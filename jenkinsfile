@@ -8,7 +8,7 @@ pipeline{
    stages{
        stage('Clone a Repo'){
            steps{
-               git ''
+               git 'https://github.com/Abhilash-gundra/my_first_pipeline.git'
            }
        }
        
@@ -35,45 +35,4 @@ pipeline{
                sh 'mvn package'
            }
        }
-       }
-}
-
-
-
-
-Parallel stages
-
-pipeline{
-    
-    tools{
-        maven 'mymaven'
-    }
-
-    agent any
-
-   stages{
-       stage('Clone a Repo'){
-           steps{
-               git 'https://github.com/Sonal0409/DevOpsCodeDemo.git'
-           }
-       }
-
-      stage('parallel stage') {
-
-      parallel {
-
-       	stage('Compile the code'){
-          	 steps{
-              	 sh 'mvn compile'
-          	 }
-      	 }
-       
-       stage('CodeReview'){
-           	steps{
-               sh 'mvn pmd:pmd'
-           }
-       }
-    }
-  }
- }
 }
